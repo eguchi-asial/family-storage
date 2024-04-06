@@ -1,12 +1,18 @@
-from flask import Flask, request, send_from_directory
+from flask import Flask, render_template, request, redirect
+
 import os
 
 app = Flask(__name__)
+# テンプレートが変更されたとき、再読み込みする
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 UPLOAD_FOLDER = '/mnt/share'
 
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    image_dir = '/mnt/share'
+    image_files = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f)) and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
+    return render_template('index.html', image_files=image_files)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -19,7 +25,7 @@ def upload_file():
         if not allowed_file(file.filename):
             return 'File type not allowed'
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-    return 'Files saved successfully'
+    return redirect('/')
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov'}

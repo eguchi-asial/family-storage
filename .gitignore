@@ -1,0 +1,37 @@
+# ログファイル
+*.log
+
+# 実行可能ファイル、バイナリファイル
+*.exe
+*.out
+*.o
+*.so
+*.dll
+
+# パッケージ管理システムのキャッシュやローカル設定
+/node_modules
+/.pnp
+.pnp.js
+/package-lock.json
+/yarn.lock
+
+# IDEやエディタの設定
+/.idea
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+*~
+
+# OSの一時ファイル
+.DS_Store
+Thumbs.db
+
+# ビルド結果
+/dist
+/build
+
+# Pythonのバイトコード
+__pycache__/
+*.py[cod]
