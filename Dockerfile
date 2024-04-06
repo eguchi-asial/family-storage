@@ -6,6 +6,8 @@ RUN apt-get update
 
 # Nginxをインストール
 RUN apt-get install -y nginx
+# 小規模PJ向けのAPpサーバーであるGunicornをインストール
+RUN pip3 install gunicorn
 
 # ワーキングディレクトリを設定
 WORKDIR /app
@@ -23,8 +25,11 @@ COPY . .
 # /mnt/shareディレクトリを作成し、パーミッションを設定
 RUN mkdir -p /mnt/share && chmod 777 /mnt/share
 
-# Nginxとアプリケーションを実行するコマンド
-CMD service nginx start && python3 app.py
+# Nginxとアプリケーションを実行する
+## gunicornの-wオプションでワーカー数を指定。ラズパイは4コアなので4に設定
+## gunicornの-bオプションでバインドするIPアドレスとポートを指定
+## app:appはapp.pyのappオブジェクトを指定
+CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:3000 app:app
 
 # コンテナの80番ポート開放
 EXPOSE 80
