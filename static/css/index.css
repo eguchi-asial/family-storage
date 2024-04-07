@@ -5,27 +5,39 @@ ul, li {
 }
 
 .images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.thumbnail {
+  flex: 1 0 200px;
+  margin: 5px;
+  max-width: calc(100% - 10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
   
+@media screen and (min-width: 600px) {
   .thumbnail {
-    flex: 1 0 200px;
-    margin: 5px;
-    max-width: calc(100% - 10px);
+    flex: 1 0 150px;
+    max-width: calc(20% - 10px);
   }
-  
-  @media screen and (min-width: 600px) {
-    .thumbnail {
-      flex: 1 0 150px;
-      max-width: calc(20% - 10px);
-    }
+}
+
+@media screen and (min-width: 900px) {
+  .thumbnail {
+    flex: 1 0 100px;
+    max-width: calc(25% - 10px);
   }
-  
-  @media screen and (min-width: 900px) {
-    .thumbnail {
-      flex: 1 0 100px;
-      max-width: calc(25% - 10px);
-    }
-  }
+}
