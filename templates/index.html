@@ -7,7 +7,7 @@
     <form action="/upload" method="post" enctype="multipart/form-data">
       <label class="upload-button">
           +
-          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="checkFileNumber(this)">
+          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="checkFileSize(this)">
       </label>
       <input type="submit" value="Upload" name="doSubmit" hidden>
     </form>
@@ -18,9 +18,15 @@
     {% endfor %}
     </ul>
     <script>
-      function checkFileNumber(input) {
-          if (input.files.length > 10) {
-              alert("一度にuploadできるのは10個までです");
+      function checkFileSize(input) {
+          var totalFileSize = 0;
+          for (var i = 0; i < input.files.length; i++) {
+              totalFileSize += input.files[i].size; // size in bytes
+          }
+          // Convert size to MB
+          totalFileSize = totalFileSize / 1024 / 1024;
+          if (totalFileSize > 100) {
+              alert("合計ファイルサイズは100MBまでです");
               input.value = ""; // Clear the selection
           } else {
             input.form.doSubmit.click()
