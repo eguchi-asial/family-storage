@@ -14,7 +14,7 @@ ul, li {
   flex: 1 0 200px;
   margin: 5px;
   max-width: calc(100% - 10px);
-  min-height: 150px;
+  min-height: 200px;
   position: relative;
   overflow: hidden;
 }
@@ -33,7 +33,7 @@ ul, li {
   .thumbnail {
     flex: 1 0 150px;
     max-width: calc(20% - 10px);
-    min-height: 150px;
+    min-height: 100px;
   }
 }
 
@@ -41,6 +41,6 @@ ul, li {
   .thumbnail {
     flex: 1 0 100px;
     max-width: calc(25% - 10px);
-    min-height: 100px;
+    min-height: 150px;
   }
 }
