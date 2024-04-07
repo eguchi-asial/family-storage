@@ -2,10 +2,12 @@
   display: inline-block;
   width: 50px;
   height: 50px;
-  background-color: #f44;
+  background-color: #3498db;
   color: #fff;
   border-radius: 50%;
-  position: relative;
+  position: fixed; /* 位置を固定 */
+  right: 20px; /* 右からの距離を指定 */
+  bottom: 20px; /* 下からの距離を指定 */
   font-size: 30px;
   line-height: 50px;
   text-align: center;
