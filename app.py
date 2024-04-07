@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from PIL import Image
 
 import os
 
@@ -7,12 +8,15 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 UPLOAD_FOLDER = '/mnt/share'
+THUMBNAIL_SIZE = (128, 128)
+THUMBNAIL_DIR = "/mnt/share/thumbnail"
+IMAGE_DIR = '/mnt/share'
 
 @app.route('/')
 def index():
-    image_dir = '/mnt/share'
-    image_files = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f)) and not f.startswith('._') and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
-    return render_template('index.html', image_files=image_files)
+    # Get only the thumbnail images
+    thumbnail_files = [f for f in os.listdir(THUMBNAIL_DIR) if os.path.isfile(os.path.join(THUMBNAIL_DIR, f)) and not f.startswith('._') and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
+    return render_template('index.html', image_files=thumbnail_files)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -25,6 +29,12 @@ def upload_file():
         if not allowed_file(file.filename):
             return 'File type not allowed'
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
+         # Open the image file
+        with Image.open(os.path.join(IMAGE_DIR, file.filename)) as img:
+            # Create a thumbnail
+            img.thumbnail(THUMBNAIL_SIZE)
+            # Save the thumbnail to a new file in the specified directory
+            img.save(os.path.join(THUMBNAIL_DIR, 'thumbnail_' + file.filename))
     return redirect('/')
 
 def allowed_file(filename):
