@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+  </head>
+  <body>
 
-<form action="/upload" method="post" enctype="multipart/form-data">
-  画像/動画を選択してください:
-  <input type="file" name="file" id="file" accept="image/*,video/*" multiple>
-  <input type="submit" value="Upload" name="submit">
-</form>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    画像/動画を選択してください:
+    <input type="file" name="file" id="file" accept="image/*,video/*" multiple>
+    <input type="submit" value="Upload" name="submit">
+  </form>
 
-ファイル一覧
+  ファイル一覧
 
-<ul>
-{% for image_file in image_files %}
-  <li><img src="/assets/thumbnail/{{ image_file }}" alt="{{ image_file }}"></li>
-{% endfor %}
-</ul>
+  <ul class="images">
+  {% for image_file in image_files %}
+    <li class="thumbnail"><img src="/assets/thumbnail/{{ image_file }}" alt="{{ image_file }}"></li>
+  {% endfor %}
+  </ul>
 
-</body>
+  </body>
 </html>
