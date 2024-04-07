@@ -11,7 +11,7 @@ UPLOAD_FOLDER = '/mnt/share'
 @app.route('/')
 def index():
     image_dir = '/mnt/share'
-    image_files = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f)) and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
+    image_files = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f)) and not f.startswith('._') and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
     return render_template('index.html', image_files=image_files)
 
 @app.route('/upload', methods=['POST'])
