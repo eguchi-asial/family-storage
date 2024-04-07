@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from PIL import Image
 import logging
-
 import os
+import mimetypes
 
 app = Flask(__name__)
 # テンプレートが変更されたとき、再読み込みする
@@ -22,7 +22,8 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return 'No file part'
+        logging.warning('No file part')
+        return redirect('/')
     files = request.files.getlist('file')
     for file in files:
         if file.filename == '':
@@ -30,9 +31,13 @@ def upload_file():
             return redirect('/')
         if not allowed_file(file.filename):
             logging.warning('File type not allowed')
-            return redirect('/')
+            continue  # Skip this file and move to the next one
+        mimetype = mimetypes.guess_type(file.filename)[0]
+        if not mimetype or not mimetype.startswith('image'):
+            logging.warning('File is not an image')
+            continue  # Skip this file and move to the next one
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-         # Open the image file
+        # Open the image file
         with Image.open(os.path.join(IMAGE_DIR, file.filename)) as img:
             # Create a thumbnail
             img.thumbnail(THUMBNAIL_SIZE)
