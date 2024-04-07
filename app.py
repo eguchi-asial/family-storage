@@ -16,7 +16,17 @@ IMAGE_DIR = '/mnt/share'
 @app.route('/')
 def index():
     # Get only the thumbnail images
-    thumbnail_files = [f for f in os.listdir(THUMBNAIL_DIR) if os.path.isfile(os.path.join(THUMBNAIL_DIR, f)) and not f.startswith('._') and (f.endswith('.png') or f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.gif'))]
+    thumbnail_files = [
+        f for f in os.listdir(THUMBNAIL_DIR)
+        if os.path.isfile(os.path.join(THUMBNAIL_DIR, f))
+        and not f.startswith('._')
+        and (
+            f.endswith('.png')
+            or f.endswith('.jpg')
+            or f.endswith('.jpeg')
+            or f.endswith('.gif')
+        )
+    ]
     return render_template('index.html', image_files=thumbnail_files)
 
 @app.route('/upload', methods=['POST'])
@@ -33,6 +43,7 @@ def upload_file():
             logging.warning('File type not allowed')
             continue  # Skip this file and move to the next one
         mimetype = mimetypes.guess_type(file.filename)[0]
+        # TODO 今はまだ画像のみ対応
         if not mimetype or not mimetype.startswith('image'):
             logging.warning('File is not an image')
             continue  # Skip this file and move to the next one
