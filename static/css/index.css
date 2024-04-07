@@ -1,16 +1,16 @@
 .upload-button {
   z-index: 99999;
   display: inline-block;
-  width: 75px;
-  height: 75px;
+  width: 125px;
+  height: 125px;
   background-color: #3498db;
   color: #fff;
   border-radius: 50%;
   position: fixed; /* 位置を固定 */
   right: 20px; /* 右からの距離を指定 */
   bottom: 20px; /* 下からの距離を指定 */
-  font-size: 30px;
-  line-height: 75px;
+  font-size: 50px;
+  line-height: 125px;
   text-align: center;
   cursor: pointer;
   overflow: hidden;
