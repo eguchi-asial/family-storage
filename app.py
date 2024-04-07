@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from PIL import Image
+import logging
 
 import os
 
@@ -25,9 +26,11 @@ def upload_file():
     files = request.files.getlist('file')
     for file in files:
         if file.filename == '':
-            return 'No selected file'
+            logging.warning('No selected file')
+            return redirect('/')
         if not allowed_file(file.filename):
-            return 'File type not allowed'
+            logging.warning('File type not allowed')
+            return redirect('/')
         file.save(os.path.join(UPLOAD_FOLDER, file.filename))
          # Open the image file
         with Image.open(os.path.join(IMAGE_DIR, file.filename)) as img:

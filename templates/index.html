@@ -7,7 +7,7 @@
     <form action="/upload" method="post" enctype="multipart/form-data">
       <label class="upload-button">
           +
-          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="this.form.doSubmit.click()">
+          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="checkFileNumber(this)">
       </label>
       <input type="submit" value="Upload" name="doSubmit" hidden>
     </form>
@@ -17,5 +17,15 @@
       <li class="thumbnail"><img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}"></li>
     {% endfor %}
     </ul>
+    <script>
+      function checkFileNumber(input) {
+          if (input.files.length > 10) {
+              alert("一度にuploadできるのは10個までです");
+              input.value = ""; // Clear the selection
+          } else {
+            input.form.doSubmit.click()
+          }
+      }
+    </script>
   </body>
 </html>
