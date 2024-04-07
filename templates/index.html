@@ -8,9 +8,9 @@
       画像を選択してください:
       <label class="upload-button">
           +
-          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="this.form.submit()">
+          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="this.form.doSubmit.click()">
       </label>
-      <input type="submit" value="Upload" name="submit" hidden>
+      <input type="submit" value="Upload" name="doSubmit" hidden>
     </form>
     <p>ファイル一覧</p>
     <ul class="images">
