@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 UPLOAD_FOLDER = '/mnt/share'
-THUMBNAIL_SIZE = (128, 128)
+THUMBNAIL_SIZE = (960, 540)
 THUMBNAIL_DIR = "/mnt/share/thumbnail"
 IMAGE_DIR = '/mnt/share'
 
