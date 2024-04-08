@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
             checkbox.style.position = 'absolute';
             checkbox.style.top = '5px';
             checkbox.style.right = '5px';
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
             checkbox.addEventListener('change', function() {
                 const thumbnail = this.closest('.thumbnail');
                 if (this.checked) {
