@@ -15,21 +15,25 @@ body {
   justify-content: flex-end;
   background-color: rgba(255, 255, 255, 0.5);
   z-index: 1000;
-  height: 50px; /* Adjust this to change the height of the button bar */
+  height: 75px; /* Adjust this to change the height of the button bar */
   padding: 10px;
 }
 
-#select-button {
-  background-color: #3498db;
-  border-radius: 100%;
-  color: #fff;
-  width: 50px;
-  height: 50px;
+#select-button,#cancel-button {
+  width: 75px;
+  height: 75px;
   margin-right: 10px;
+  font-size: 18px;
+}
+
+#select-button {
+  border-radius: 100%;
+  background-color: #3498db;
+  color: #fff;
 }
 
 .contents {
-  margin-top: 60px; /* This should be the same as the height of .edit-buttons */
+  margin-top:80px; /* This should be the same as the height of .edit-buttons */
 }
 
 .image-checkbox {
@@ -50,7 +54,7 @@ body {
   justify-content: flex-end;
   padding: 10px;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.5); /* Adjust this to change the background color */
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .delete-area {
@@ -127,16 +131,15 @@ ul, li {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-  
-@media screen and (min-width: 600px) {
-  .thumbnail {
-    flex: 1 0 150px;
-    max-width: calc(20% - 10px);
-    min-height: 100px;
-  }
-}
 
 @media screen and (min-width: 900px) {
+
+  #select-button,#cancel-button {
+    width: 100px;
+    height: 100px;
+    font-size: 28px;
+  }
+
   .thumbnail {
     flex: 1 0 200px;
     max-width: calc(25% - 10px);
