@@ -28,8 +28,8 @@ RUN mkdir -p /mnt/share && chmod 777 /mnt/share && mkdir /mnt/share/thumbnail &&
 # Nginxとアプリケーションを実行する
 ## gunicornの-wオプションでワーカー数を指定。ラズパイは4コアなので4に設定
 ## gunicornの-bオプションでバインドするIPアドレスとポートを指定
-## app:appはapp.pyのappオブジェクトを指定
-CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:3000 app:app
+## run:appはapp.pyのappオブジェクトを指定
+CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:3000 run:app
 
 # コンテナの80番ポート開放
 EXPOSE 80
