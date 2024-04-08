@@ -60,5 +60,14 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/delete', methods=['POST'])
+def delete_files():
+    files_to_delete = request.get_json()
+    for filename in files_to_delete:
+        # filenameに「thumbnail_」が付いているので、元のファイル名に戻す
+        os.remove(os.path.join(UPLOAD_FOLDER, filename.replace("thumbnail_", "")))
+        os.remove(os.path.join(THUMBNAIL_DIR, filename))
+    return '', 204
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)

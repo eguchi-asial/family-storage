@@ -1,3 +1,7 @@
+#delete-button {
+  display: none;
+}
+
 .upload-button {
   z-index: 99999;
   display: inline-block;
@@ -45,6 +49,15 @@ ul, li {
   min-height: 200px;
   position: relative;
   overflow: hidden;
+}
+
+.thumbnail.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+  color: green;
 }
 
 .thumbnail img {
