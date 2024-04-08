@@ -13,14 +13,15 @@ body {
   right: 0;
   display: flex;
   justify-content: flex-end;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
   z-index: 1000;
   height: 75px; /* Adjust this to change the height of the button bar */
   padding: 10px;
 }
 
 #select-button,#cancel-button {
-  width: 75px;
+  width: auto;
+  min-width: 75px;
   height: 75px;
   margin-right: 10px;
   font-size: 18px;
@@ -54,7 +55,7 @@ body {
   justify-content: flex-end;
   padding: 10px;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .delete-area {
@@ -135,8 +136,6 @@ ul, li {
 @media screen and (min-width: 900px) {
 
   #select-button,#cancel-button {
-    width: 100px;
-    height: 100px;
     font-size: 28px;
   }
 
