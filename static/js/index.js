@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const selectButton = document.getElementById('select-button');
+    const cancelButton = document.getElementById('cancel-button');
     const deleteButton = document.getElementById('delete-button');
 
     selectButton.addEventListener('click', function() {
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const thumbnail = this.closest('.thumbnail');
                 if (this.checked) {
                     thumbnail.classList.add('selected');
+                    cancelButton.style.display = 'block';
                 } else {
                     thumbnail.classList.remove('selected');
                 }
@@ -26,10 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     deleteButton.style.display = 'block';
                 } else {
                     deleteButton.style.display = 'none';
+                    cancelButton.style.display = 'none';
                 }
             });
             thumbnail.appendChild(checkbox);
         });
+    });
+
+    cancelButton.addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.remove();
+        });
+        deleteButton.style.display = 'none';
+        cancelButton.style.display = 'none';
     });
   
     // 削除ボタンが押されたときの処理
