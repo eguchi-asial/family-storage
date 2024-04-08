@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const selectButton = document.getElementById('select-button');
-    const cancelButton = document.getElementById('cancel-button');
-    const deleteButton = document.getElementById('delete-button');
+    const selectButton = document.querySelector('#select-button');
+    const cancelButton = document.querySelector('#cancel-button');
+    const deleteButtonArea = document.querySelector('.delete-area');
     const thumbnails = document.querySelectorAll('.thumbnail');
 
     selectButton.addEventListener('click', function() {
@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
             if (selectedCheckboxes.length > 0) {
-                deleteButton.style.display = 'block';
+                deleteButtonArea.style.display = 'block';
             } else {
-                deleteButton.style.display = 'none';
+                deleteButtonArea.style.display = 'none';
             }
         });
     });
@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
             checkbox.checked = false;
             checkbox.style.display = 'none';
         });
-        deleteButton.style.display = 'none';
+        deleteButtonArea.style.display = 'none';
         cancelButton.style.display = 'none';
     });
   
     // 削除ボタンが押されたときの処理
-    deleteButton.addEventListener('click', function() {
+    deleteButtonArea.addEventListener('click', function() {
       const selectedImages = Array.from(document.querySelectorAll('.thumbnail.selected')).map(function(thumbnail) {
         return thumbnail.querySelector('img').alt;
       });

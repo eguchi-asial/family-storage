@@ -4,27 +4,36 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
   </head>
   <body>
-    <button id="select-button">選択</button>
-    <button id="cancel-button">キャンセル</button>
-    <button id="delete-button">削除</button>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <label class="upload-button">
-          +
-          <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="checkFileSize(this)">
-      </label>
-      <input type="submit" value="Upload" name="doSubmit" hidden>
-    </form>
-    <p>ファイル一覧</p>
-    <ul class="images">
-    {% for image_file in image_files %}
-    <li class="thumbnail">
-      <label>
-          <input type="checkbox" class="image-checkbox" />
-          <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}">
-      </label>
-    </li>
-    {% endfor %}
-    </ul>
+    <div class="edit-buttons">
+      <button id="select-button">選択</button>
+      <button id="cancel-button">キャンセル</button>
+    </div>
+    <div class="contents">
+      <div class="update-images-area">
+        <div class="upload-area">
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <label class="upload-button">
+                +
+                <input type="file" name="file" id="file" accept="image/*,video/*" multiple onchange="checkFileSize(this)">
+            </label>
+            <input type="submit" value="Upload" name="doSubmit" hidden>
+          </form>
+        </div>
+        <div class="delete-area">
+          -
+        </div>
+      </div>
+      <ul class="images">
+      {% for image_file in image_files %}
+      <li class="thumbnail">
+        <label>
+            <input type="checkbox" class="image-checkbox" />
+            <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}">
+        </label>
+      </li>
+      {% endfor %}
+      </ul>
+    </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>
 </html>

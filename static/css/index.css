@@ -1,5 +1,35 @@
-#cancel-button,#delete-button,.image-checkbox {
+#cancel-button,.delete-area,.image-checkbox {
   display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.edit-buttons {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1000;
+  height: 50px; /* Adjust this to change the height of the button bar */
+  padding: 10px;
+}
+
+#select-button {
+  background-color: #3498db;
+  border-radius: 100%;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.contents {
+  margin-top: 60px; /* This should be the same as the height of .edit-buttons */
 }
 
 .image-checkbox {
@@ -11,32 +41,60 @@
   height: 20px;
 }
 
-.upload-button {
+.update-images-area {
   z-index: 99999;
-  display: inline-block;
+  position: fixed;
+  bottom: 20px; /* 下からの距離を指定 */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5); /* Adjust this to change the background color */
+}
+
+.delete-area {
+  order: 1;
+  background-color: #e74c3c; /* 赤系の色 */
+  color: #fff; /* 文字色は白 */
+  right: 20px; /* 右からの距離を指定 */
   width: 125px;
   height: 125px;
-  background-color: #3498db;
-  color: #fff;
-  border-radius: 50%;
-  position: fixed; /* 位置を固定 */
-  right: 20px; /* 右からの距離を指定 */
-  bottom: 20px; /* 下からの距離を指定 */
+  border-radius: 25%;
+  cursor: pointer;
+  overflow: hidden;
   font-size: 50px;
   line-height: 125px;
   text-align: center;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.upload-area {
+  order: 2;
+  right: 20px; /* 右からの距離を指定 */
+  width: 125px;
+  height: 125px;
+  background-color: #3498db;
+  border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
+  font-size: 50px;
+  line-height: 125px;
+  text-align: center;
+  color: #fff;
 }
 
 .upload-button input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  order: 2;
+  right: 20px;
+  width: 125px;
+  height: 125px;
   opacity: 0;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 ul, li {
@@ -83,5 +141,10 @@ ul, li {
     flex: 1 0 200px;
     max-width: calc(25% - 10px);
     min-height: 200px;
+  }
+
+  .image-checkbox {
+    width: 40px;
+    height: 40px;
   }
 }
