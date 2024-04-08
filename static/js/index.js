@@ -2,43 +2,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectButton = document.getElementById('select-button');
     const cancelButton = document.getElementById('cancel-button');
     const deleteButton = document.getElementById('delete-button');
+    const thumbnails = document.querySelectorAll('.thumbnail');
 
     selectButton.addEventListener('click', function() {
-        document.querySelectorAll('.thumbnail').forEach(function(thumbnail) {
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.style.position = 'absolute';
-            checkbox.style.top = '5px';
-            checkbox.style.right = '5px';
-            checkbox.addEventListener('click', function() {
-                this.classList.toggle('selected');
-            });
-            checkbox.addEventListener('change', function() {
-                const thumbnail = this.closest('.thumbnail');
-                if (this.checked) {
-                    thumbnail.classList.add('selected');
-                    cancelButton.style.display = 'block';
-                } else {
-                    thumbnail.classList.remove('selected');
-                }
-            
-                const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-                const deleteButton = document.getElementById('delete-button');
-                if (selectedCheckboxes.length > 0) {
-                    deleteButton.style.display = 'block';
-                } else {
-                    deleteButton.style.display = 'none';
-                    cancelButton.style.display = 'none';
-                }
-            });
-            thumbnail.appendChild(checkbox);
+        cancelButton.style.display = 'block';
+        const checkboxes = document.querySelectorAll('.image-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.style.display = 'block'
+        });
+    });
+
+    thumbnails.forEach(function(thumbnail) {
+        thumbnail.addEventListener('click', function() {
+            thumbnail.classList.toggle('selected');
+        });
+
+        const checkbox = thumbnail.querySelector('.image-checkbox');
+        checkbox.addEventListener('change', function() {
+            if (checkbox.style.display !== 'block') return
+            if (this.checked) {
+                thumbnail.classList.add('selected');
+            } else {
+                thumbnail.classList.remove('selected');
+            }
+            const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (selectedCheckboxes.length > 0) {
+                deleteButton.style.display = 'block';
+            } else {
+                deleteButton.style.display = 'none';
+            }
         });
     });
 
     cancelButton.addEventListener('click', function() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
-            checkbox.remove();
+            checkbox.checked = false;
+            checkbox.style.display = 'none';
         });
         deleteButton.style.display = 'none';
         cancelButton.style.display = 'none';

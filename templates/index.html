@@ -17,7 +17,12 @@
     <p>ファイル一覧</p>
     <ul class="images">
     {% for image_file in image_files %}
-      <li class="thumbnail"><img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}"></li>
+    <li class="thumbnail">
+      <label>
+          <input type="checkbox" class="image-checkbox" />
+          <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}">
+      </label>
+    </li>
     {% endfor %}
     </ul>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
