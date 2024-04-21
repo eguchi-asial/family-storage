@@ -13,6 +13,7 @@ def find_duplicates(directory_path):
         if entry.is_file():
             file_path = entry.path
             file_hash = calculate_hash(file_path)
+            # UNIX時間の取得
             modified_time = os.path.getmtime(file_path)
             if file_hash in file_dict:
                 # If the current file is older, delete it
