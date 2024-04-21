@@ -33,4 +33,7 @@ http://localhost
 - [x] /mnt/shareにupload
 - [x] /mnt/shareにある画像ファイル一覧取得してtemplateに渡す
 - [x] nginxとgunicornをたてて、/mnt/shareを /assetsで見れるようにする
+- [x] サムネイルをクリックしたらオリジナル画像を画面幅いっぱいに見れるようにする
 - [x] 同じ画像が/mnt/shareにuploadされたら、定期実行バッチで削除する。/mnt/share/thumbnail/も同様に消す。ファイル名は「thumbnail_」が付くかどうかで後は同じなので。
+  - [x] 処理プログラム実装
+  - [ ] cron登録
