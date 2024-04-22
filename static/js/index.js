@@ -15,46 +15,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
     thumbnails.forEach(function(thumbnail) {
         thumbnail.addEventListener('click', function(e) {
-            thumbnail.classList.toggle('selected');
-            // キャンセルボタンが表示されていない＝編集モードではない場合
-            if (cancelButton.style.display !== 'block') {
-                // Get the original image URL
-                const originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
+            // チェックボックスのchangeイベントと重複してしまうため、ここで処理を分岐
+            if (e.target.nodeName === 'IMG') {
+                thumbnail.classList.toggle('selected');
+                // キャンセルボタンが表示されていない＝編集モードではない場合
+                if (cancelButton.style.display !== 'block') {
+                    // Get the original image URL
+                    const originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
 
-                // Create a new image element for the popup
-                const popupImage = document.createElement('img');
-                popupImage.src = originalImageUrl;
-                popupImage.style.maxWidth = '100vw';
-                popupImage.style.maxHeight = '100vh';
+                    // Create a new image element for the popup
+                    const popupImage = document.createElement('img');
+                    popupImage.src = originalImageUrl;
+                    popupImage.style.maxWidth = '100vw';
+                    popupImage.style.maxHeight = '100vh';
 
-                // Create a new div element for the popup background
-                const popupBackground = document.createElement('div');
-                popupBackground.style.position = 'fixed';
-                popupBackground.style.top = '0';
-                popupBackground.style.left = '0';
-                popupBackground.style.width = '100vw';
-                popupBackground.style.height = '100vh';
-                popupBackground.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                popupBackground.style.display = 'flex';
-                popupBackground.style.justifyContent = 'center';
-                popupBackground.style.alignItems = 'center';
-                popupBackground.style.zIndex = '1000';
+                    // Create a new div element for the popup background
+                    const popupBackground = document.createElement('div');
+                    popupBackground.style.position = 'fixed';
+                    popupBackground.style.top = '0';
+                    popupBackground.style.left = '0';
+                    popupBackground.style.width = '100vw';
+                    popupBackground.style.height = '100vh';
+                    popupBackground.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                    popupBackground.style.display = 'flex';
+                    popupBackground.style.justifyContent = 'center';
+                    popupBackground.style.alignItems = 'center';
+                    popupBackground.style.zIndex = '1000';
 
-                // Add the image to the popup background
-                popupBackground.appendChild(popupImage);
+                    // Add the image to the popup background
+                    popupBackground.appendChild(popupImage);
 
-                // Add the popup background to the body
-                document.body.appendChild(popupBackground);
+                    // Add the popup background to the body
+                    document.body.appendChild(popupBackground);
 
-                // Remove the popup when the background is clicked
-                popupBackground.addEventListener('click', function() {
-                    document.body.removeChild(popupBackground);
-                });
+                    // Remove the popup when the background is clicked
+                    popupBackground.addEventListener('click', function() {
+                        document.body.removeChild(popupBackground);
+                    });
+                }
             }
         });
 
         const checkbox = thumbnail.querySelector('.image-checkbox');
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function(e) {
+            e.stopPropagation();
+            console.log('change')
             if (checkbox.style.display !== 'block') return
             if (this.checked) {
                 thumbnail.classList.add('selected');
