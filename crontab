@@ -1,1 +1,2 @@
-0 * * * * /usr/bin/python3 /app/batch/sameImageRemove.py
+# 実機のraspberrypiの中だと「/app/family-storage/batch/sameImageRemove.py」かもしれない
+0 * * * * python3 /app/batch/sameImageRemove.py
