@@ -36,4 +36,10 @@ http://localhost
 - [x] サムネイルをクリックしたらオリジナル画像を画面幅いっぱいに見れるようにする
 - [x] 同じ画像が/mnt/shareにuploadされたら、定期実行バッチで削除する。/mnt/share/thumbnail/も同様に消す。ファイル名は「thumbnail_」が付くかどうかで後は同じなので。
   - [x] 処理プログラム実装
-  - [ ] cron登録
+  - [x] cron登録
+
+## アプリケーション(python/unicorn)再起動
+
+```
+pstree -ap | grep gunicorn | head -n 1 | awk -F, '{print $2}' | awk '{print $1}' | xargs kill -HUP
+```
