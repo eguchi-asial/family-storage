@@ -4,8 +4,9 @@ FROM balenalib/raspberrypi5-debian-python
 # パッケージを更新
 RUN apt-get update
 
-# Nginxをインストール
-RUN apt-get install -y nginx
+# middlewareをinstall
+## cronはraspberrypiのimageにはinstallされていないので、installする
+RUN apt-get install -y nginx && apt-get install -y cron && apt-get update
 # 小規模PJ向けのAPpサーバーであるGunicornをインストール
 RUN pip3 install gunicorn
 
@@ -18,6 +19,11 @@ RUN pip3 install -r requirements.txt
 
 # Nginxの設定ファイルをコピー
 COPY nginx.conf /etc/nginx/sites-available/default
+
+# crontaの設定ファイルをコピー
+COPY crontab /etc/cron.d/my-crontab
+RUN chmod 0644 /etc/cron.d/my-crontab
+RUN crontab /etc/cron.d/my-crontab
 
 # アプリケーションのソースをコピー
 COPY . .
@@ -32,7 +38,7 @@ ENV TZ=Asia/Tokyo
 ## gunicornの-wオプションでワーカー数を指定。ラズパイは4コアなので4に設定
 ## gunicornの-bオプションでバインドするIPアドレスとポートを指定
 ## run:appはapp.pyのappオブジェクトを指定
-CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:3000 run:app
+CMD service cron start && service nginx start && gunicorn -w 4 -b 0.0.0.0:3000 run:app
 
 # コンテナの80番ポート開放
 EXPOSE 80
