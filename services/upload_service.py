@@ -5,7 +5,9 @@ from PIL import Image
 from config import UPLOAD_FOLDER, THUMBNAIL_SIZE, THUMBNAIL_DIR, IMAGE_DIR
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov'}
+    # 動画はまだ対応していないのでコメントアウト
+    # ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov'}
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def upload_files(files):
