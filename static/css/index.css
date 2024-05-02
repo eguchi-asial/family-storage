@@ -120,7 +120,7 @@ ul, li {
   margin: 5px;
   max-width: calc(100% - 10px);
   min-height: 200px;
-  position: relative;
+  position: relative; /* Make this a relative container */
   overflow: hidden;
 }
 
@@ -136,7 +136,7 @@ ul, li {
 
 .movie_thumbnail::after {
   content: "▶"; /* 再生マーク */
-  position: absolute;
+  position: absolute; /* Make this an absolute element */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

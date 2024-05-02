@@ -24,14 +24,14 @@
         </div>
       </div>
       <ul class="images">
-      {% for image_file in image_files %}
-      <li class="thumbnail">
-        <label>
-            <input type="checkbox" class="image-checkbox" />
-            <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}" class="{{ 'movie_thumbnail' if image_file.endswith('_movie.jpg') else 'thumbnail' }}">
-        </label>
-      </li>
-      {% endfor %}
+        {% for image_file in image_files %}
+        <li class="thumbnail {{ 'movie_thumbnail' if image_file.endswith('_movie.jpg') else '' }}">
+          <label>
+              <input type="checkbox" class="image-checkbox" />
+              <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}">
+          </label>
+        </li>
+        {% endfor %}
       </ul>
     </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
