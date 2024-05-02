@@ -1,12 +1,9 @@
 # ベースとなるDockerイメージを指定
 FROM balenalib/raspberrypi5-debian-python
 
-# パッケージを更新
-RUN apt-get update
-
 # middlewareをinstall
 ## cronはraspberrypiのimageにはinstallされていないので、installする
-RUN apt-get install -y nginx && apt-get install -y cron && apt-get update
+RUN apt-get update && apt-get install -y nginx && apt-get install -y cron && apt-get install -y ffmpeg
 # 小規模PJ向けのAPpサーバーであるGunicornをインストール
 RUN pip3 install gunicorn
 
