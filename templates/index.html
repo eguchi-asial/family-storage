@@ -28,7 +28,7 @@
       <li class="thumbnail">
         <label>
             <input type="checkbox" class="image-checkbox" />
-            <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}">
+            <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}" class="{{ 'movie_thumbnail' if image_file.endswith('_movie.jpg') else 'thumbnail' }}">
         </label>
       </li>
       {% endfor %}

@@ -134,6 +134,19 @@ ul, li {
   transform: translate(-50%, -50%);
 }
 
+.movie_thumbnail::after {
+  content: "▶"; /* 再生マーク */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px; /* 再生マークのサイズを調整 */
+  color: white; /* 再生マークの色を設定 */
+  background: rgba(0, 0, 0, 0.5); /* 再生マークの背景色を設定（半透明の黒） */
+  border-radius: 50%; /* 再生マークの背景を円形にする */
+  padding: 10px; /* 再生マークと背景の間にスペースを追加 */
+}
+
 @media screen and (min-width: 900px) {
 
   #select-button,#cancel-button {
