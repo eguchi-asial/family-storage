@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         popupVideo.controls = true;
                         popupVideo.style.maxWidth = '100vw';
                         popupVideo.style.maxHeight = '100vh';
+                        popupVideo.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                        });
 
                         // Add the video to the popup background
                         popupBackground.appendChild(popupVideo);
