@@ -21,13 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 // キャンセルボタンが表示されていない＝編集モードではない場合
                 if (cancelButton.style.display !== 'block') {
                     // Get the original image URL
-                    const originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
+                    let originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
+                    // Check if the file extension is '.jpg'
+                    if (originalImageUrl.endsWith('_movie.jpg')) {
+                        // Replace '.jpg' with '.mp4'
+                        originalImageUrl = originalImageUrl.replace('.jpg', '.mp4');
+                    }
 
-                    // Create a new image element for the popup
-                    const popupImage = document.createElement('img');
-                    popupImage.src = originalImageUrl;
-                    popupImage.style.maxWidth = '100vw';
-                    popupImage.style.maxHeight = '100vh';
+                    // ファイル拡張子を取得
+                    const fileExtension = originalImageUrl.split('.').pop();
+
+                    // 動画ファイルの拡張子のリスト
+                    const videoExtensions = ['mp4', 'webm', 'ogg'];
 
                     // Create a new div element for the popup background
                     const popupBackground = document.createElement('div');
@@ -42,8 +47,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     popupBackground.style.alignItems = 'center';
                     popupBackground.style.zIndex = '1000';
 
-                    // Add the image to the popup background
-                    popupBackground.appendChild(popupImage);
+                    // originalImageUrlが動画ファイルであるかチェック
+                    if (videoExtensions.includes(fileExtension)) {
+                        // Create a new video element for the popup
+                        const popupVideo = document.createElement('video');
+                        popupVideo.src = originalImageUrl;
+                        popupVideo.controls = true;
+                        popupVideo.style.maxWidth = '100vw';
+                        popupVideo.style.maxHeight = '100vh';
+
+                        // Add the video to the popup background
+                        popupBackground.appendChild(popupVideo);
+                    } else {
+                        // Create a new image element for the popup
+                        const popupImage = document.createElement('img');
+                        popupImage.src = originalImageUrl;
+                        popupImage.style.maxWidth = '100vw';
+                        popupImage.style.maxHeight = '100vh';
+
+                        // Add the image to the popup background
+                        popupBackground.appendChild(popupImage);
+                    }
 
                     // Add the popup background to the body
                     document.body.appendChild(popupBackground);
