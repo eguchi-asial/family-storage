@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         const popupVideo = document.createElement('video');
                         popupVideo.src = originalImageUrl;
                         popupVideo.controls = true;
-                        popupVideo.style.maxWidth = '100vw';
-                        popupVideo.style.maxHeight = '100vh';
+                        popupVideo.style.maxWidth = '90vw';
+                        popupVideo.style.maxHeight = '90vh';
+                        popupVideo.style.zIndex = '1100';
                         popupVideo.addEventListener('click', function(e) {
                             e.stopPropagation();
                         });
