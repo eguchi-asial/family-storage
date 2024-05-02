@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Check if the file extension is '.jpg'
                     if (originalImageUrl.endsWith('_movie.jpg')) {
                         // Replace '.jpg' with '.mp4'
-                        originalImageUrl = originalImageUrl.replace('.jpg', '.mp4');
+                        originalImageUrl = originalImageUrl.replace('_movie.jpg', '.mp4');
                     }
 
                     // ファイル拡張子を取得
