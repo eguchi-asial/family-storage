@@ -24,15 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     let originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
                     // Check if the file extension is '.jpg'
                     if (originalImageUrl.endsWith('_movie.jpg')) {
-                        // Replace '.jpg' with '.mp4'
-                        originalImageUrl = originalImageUrl.replace('_movie.jpg', '.mp4');
+                        // data-original属性の値を取得し、拡張子を抽出してセット
+                        const originalDatasetValue = e.target.dataset.original;
+                        originalImageUrl = originalImageUrl.replace('_movie.jpg', '.' + originalDatasetValue.split('.').pop());
                     }
 
                     // ファイル拡張子を取得
                     const fileExtension = originalImageUrl.split('.').pop();
 
                     // 動画ファイルの拡張子のリスト
-                    const videoExtensions = ['mp4', 'webm', 'ogg'];
+                    const videoExtensions = ['mp4', 'mov', 'avi', 'mpg', 'mpeg']
 
                     // Create a new div element for the popup background
                     const popupBackground = document.createElement('div');
