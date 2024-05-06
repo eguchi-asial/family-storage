@@ -144,8 +144,8 @@ function checkFileSize(input) {
     }
     // Convert size to MB
     totalFileSize = totalFileSize / 1024 / 1024;
-    if (totalFileSize > 100) {
-        alert("合計ファイルサイズは100MBまでです");
+    if (totalFileSize > 500) {
+        alert("合計ファイルサイズは500MBまでです");
         input.value = ""; // Clear the selection
     } else {
     input.form.doSubmit.click()
