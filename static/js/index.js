@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (cancelButton.style.display !== 'block') {
                     // Get the original image URL
                     let originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
-                    // Check if the file extension is '.jpg'
-                    if (originalImageUrl.endsWith('_movie.jpg')) {
+                    // Check if the file extension is '.png'
+                    if (originalImageUrl.endsWith('_movie.png')) {
                         // data-original属性の値を取得し、拡張子を抽出してセット
                         const originalDatasetValue = e.target.dataset.original;
-                        originalImageUrl = originalImageUrl.replace('_movie.jpg', '.' + originalDatasetValue.split('.').pop());
+                        originalImageUrl = originalImageUrl.replace('_movie.png', '.' + originalDatasetValue.split('.').pop());
                     }
 
                     // ファイル拡張子を取得
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 削除ボタンが押されたときの処理
     deleteButtonArea.addEventListener('click', function() {
       const selectedImages = Array.from(document.querySelectorAll('.thumbnail.selected')).map(function(thumbnail) {
-        return thumbnail.querySelector('img').alt;
+        return thumbnail.querySelector('img').getAttribute('data-original');
       });
   
       fetch('/delete', {

@@ -25,7 +25,7 @@
       </div>
       <ul class="images">
         {% for image_file in image_files %}
-        <li class="thumbnail {{ 'movie_thumbnail' if image_file.endswith('_movie.jpg') else '' }}">
+        <li class="thumbnail {{ 'movie_thumbnail' if image_file.endswith('_movie.png') else '' }}">
           <label>
               <input type="checkbox" class="image-checkbox" />
               <img src="/assets/thumbnail/{{ image_file }}" loading="lazy" alt="{{ image_file }}" data-original="{{ original_files[loop.index0] }}">

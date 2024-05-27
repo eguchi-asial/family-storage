@@ -22,8 +22,8 @@ def upload_files(files):
         if mimetype.startswith('image'):
             with Image.open(os.path.join(IMAGE_DIR, file.filename)) as img:
                 img.thumbnail(THUMBNAIL_SIZE)
-                img.save(os.path.join(THUMBNAIL_DIR, 'thumbnail_' + file.filename))
+                img.save(os.path.join(THUMBNAIL_DIR, 'thumbnail_' + os.path.splitext(file.filename)[0] + '.png'))
         elif mimetype.startswith('video'):
-            thumbnail_filename = 'thumbnail_' + file.filename.rsplit('.', 1)[0] + '_movie.jpg'
+            thumbnail_filename = 'thumbnail_' + file.filename.rsplit('.', 1)[0] + '_movie.png'
             subprocess.run(['ffmpeg', '-i', os.path.join(UPLOAD_FOLDER, file.filename), '-ss', '00:00:01.000', '-vframes', '1', '-vf', 'scale=400:400', os.path.join(THUMBNAIL_DIR, thumbnail_filename)])
     return True, None

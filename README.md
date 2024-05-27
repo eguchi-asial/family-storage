@@ -9,7 +9,7 @@
 - 同じ画像をuploadすると自動で削除される(WIP cron予定)
 - webサーバにnginx、appサーバにgunicornを起用してます
 - nginxのaliasで/assetsは/mnt/shareを参照します
-  - ブラウザからはサムネイルなどは `http://xxxx/assets/thubnail/thumbnail_12345.jpeg` などで参照できます
+  - ブラウザからはサムネイルなどは `http://xxxx/assets/thubnail/thumbnail_12345.png` などで参照できます
 
 # start
 
