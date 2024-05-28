@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // キャンセルボタンが表示されていない＝編集モードではない場合
                 if (cancelButton.style.display !== 'block') {
                     // Get the original image URL
-                    let originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '/');
+                    let originalImageUrl = e.target.src.replace('thumbnail/thumbnail_', '');
                     // Check if the file extension is '.png'
                     if (originalImageUrl.endsWith('_movie.png')) {
                         // data-original属性の値を取得し、拡張子を抽出してセット
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         // Create a new image element for the popup
                         const popupImage = document.createElement('img');
-                        popupImage.src = originalImageUrl;
+                        popupImage.src = `/assets/${e.target.dataset.original}`;
                         popupImage.style.maxWidth = '100vw';
                         popupImage.style.maxHeight = '100vh';
 
